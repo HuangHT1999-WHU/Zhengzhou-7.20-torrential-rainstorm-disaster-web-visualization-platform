@@ -1,0 +1,51 @@
+.btnWeatherUpdate {
+    border: 0;
+    background: none;
+    text-transform: uppercase;
+    color: #de2a06e0;
+    font-weight: bold;
+    font-family: 楷体;
+    font-size: 18px;
+    position: relative;
+    outline: none;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.btnWeatherUpdate::before,
+button::after {
+    box-sizing: inherit;
+    position: absolute;
+    content: '';
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+}
+
+.btnWeatherUpdate::after {
+    bottom: 0;
+    right: 0;
+}
+
+.btnWeatherUpdate::before {
+    top: 0;
+    left: 0;
+}
+
+.btnWeatherUpdate:hover::before,
+.btnWeatherUpdate:hover::after {
+    width: 100%;
+    height: 100%;
+}
+
+.btnWeatherUpdate:hover::before {
+    border-top-color: #AA3344;
+    border-right-color: #AA3344;
+    transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
+}
+
+.btnWeatherUpdate:hover::after {
+    border-bottom-color: #AA3344;
+    border-left-color: #AA3344;
+    transition: border-color 0s ease-out 0.6s, width 0.3s ease-out 0.6s, height 0.3s ease-out 1s;
+}

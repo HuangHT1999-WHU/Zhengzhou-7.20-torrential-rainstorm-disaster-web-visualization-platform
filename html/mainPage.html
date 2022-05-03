@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <title>河南郑州“7·20”特大暴雨事件历程可视化平台</title>
+
+   <!-- JQuery JS 文件引用 -->
+   <!-- 稳定条件下可使用链接引入：https://code.jquery.com/jquery-3.6.0.min.js -->
+   <script src="../js/jquery-3.6.0.min.js"></script>
+
+   <!-- sidebarMenu JS&CSS 文件引用 -->
+   <script src="../js/sidebarMenu.js"></script>
+   <link rel="stylesheet" href="../css/sidebarMenu.css">
+
+   <!--页眉标题和页脚信息 CSS 文件引用-->
+   <link rel="stylesheet" href="../css/headTitleAndFooter.css" />
+
+   <!-- TimeLine JS&CSS 文件引用 -->
+   <script src="../js/timeline.min.js"></script>
+   <link rel="stylesheet" href="../css/timeline.min.css" />
+
+   <!-- Echart JS 文件引用 -->
+   <!-- 稳定条件下可使用链接引入：https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js -->
+   <script src="../js/echarts.min.js"></script>
+
+   <!-- 中国地图 JS 文件引用 -->
+   <script src="../js/china.js"></script>
+
+   <!-- 天气数据更新按钮悬停效果 CSS 文件引入 -->
+   <link rel="stylesheet" href="../css/btnWeatherUpdate.css" />
+
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+      }
+   </style>
+
+</head>
+
+
+<body>
+   <!--滑动菜单栏-->
+   <nav class="ss-menu hide">
+      <ul>
+         <li class="menuTitle">导航窗口</li>
+         <li><a id="btnGoToRealtimeWeatherMap">实时天气地图</a></li>
+         <li><a id="btnGoToWaterDepthTimeline">积水深度时序轮播</a></li>
+         <li><a id="btnGoToPOISubmergedRatio">POI受淹比例</a></li>
+         <li><a id="btnGoToDisasterDamageAnalysis">受灾程度分析</a></li>
+         <li><a id="btnGoToDEMDataDource">DEM数据源(NASA)</a></li>
+         <li><a id="btnGoToLandcoverDataDource">土地利用数据源(ESA)</a></li>
+         <li><a id="btnGoToGitHubLink">GitHub开源链接</a></li>
+      </ul>
+   </nav>
+   <!--滑动菜单栏到此结束-->
+
+   <header class="topHeadTitle">
+      <h1>河南郑州“7·20”特大暴雨事件历程可视化平台</h1>
+   </header>
+
+   <div id="realtimeWeatherMapID" style="width: 1468px; margin-left: 50px; position: relative;">
+      <iframe width="1460" scrolling="no" height="220" frameborder="0" allowtransparency="true"
+         src="https://i.tianqi.com?c=code&id=13&bdc=%23FFFFFF&icon=1&py=zhengzhou&temp=0&site=12"></iframe>
+
+      <div
+         style="width: 1460px; height:50px; margin-bottom: 20px; background-color: rgba(233, 233, 233, 0.726); position: relative">
+         <button id="btnWeatherUpdateID" class="btnWeatherUpdate"
+            style="width: 730px; height:50px; margin-bottom: 20px">更新实时天气数据 / 显示实时天气地图</button>
+         <div
+            style="width: 730px; height:50px; margin-bottom: 20px; float: right; text-align: center; line-height: 50px;">
+            <p id="updateTimeID"></p>
+         </div>
+      </div>
+
+      <h3 style="color: '#456268';text-align: center;font-weight:bold">中国当前小时累计降水量分布图</h3>
+      <div id="precipitationMapID" style="width: 1460px; height: 700px;"></div>
+
+      <h3 style="color: '#456268';text-align: center;font-weight:bold; margin-top: 20px;">中国实时气温分布图</h3>
+      <div id="temperatureMapID" style="width: 1460px; height: 700px;"></div>
+
+      <h3 style="color: '#456268';text-align: center;font-weight:bold; margin-top: 20px;">中国实时风速分布图</h3>
+      <div id="windSpeedMapID" style="width: 1460px; height: 700px;"></div>
+
+   </div>
+
+   <div id="waterDepthTimelineID"
+      style="width: 1468px; height: 700px; margin-left: 50px; position: relative; display: none;">
+      <div
+         style="width: 1465px; height: 695px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+         <div class="timeline-container timeline-theme-1">
+            <div class="timeline js-timeline">
+               <div data-time="0719-00h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071900.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-01h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071901.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-02h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071902.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-03h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071903.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-04h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071904.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-05h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071905.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-06h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071906.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-07h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071907.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-08h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071908.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-09h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071909.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-10h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071910.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-11h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071911.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-12h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071912.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-13h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071913.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-14h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071914.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-15h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071915.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-16h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071916.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-17h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071917.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-18h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071918.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-19h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071919.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-20h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071920.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-21h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071921.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-22h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071922.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0719-23h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度071923.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-00h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072000.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-01h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072001.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-02h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072002.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-03h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072003.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-04h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072004.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-05h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072005.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-06h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072006.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-07h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072007.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-08h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072008.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-09h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072009.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-10h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072010.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-11h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072011.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-12h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072012.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-13h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072013.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-14h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072014.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-15h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072015.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-16h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072016.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-17h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072017.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-18h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072018.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-19h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072019.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-20h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072020.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-21h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072021.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-22h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072022.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0720-23h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072023.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-00h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072100.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-01h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072101.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-02h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072102.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-03h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072103.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-04h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072104.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-05h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072105.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-06h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072106.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-07h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072107.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-08h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072108.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-09h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072109.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-10h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072110.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-11h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072111.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-12h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072112.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-13h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072113.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-14h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072114.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-15h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072115.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-16h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072116.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-17h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072117.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-18h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072118.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-19h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072119.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-20h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072120.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-21h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072121.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-22h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072122.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+               <div data-time="0721-23h" style="text-align: center;">
+                  <img src="../image/积水深度时序图/河南郑州720特大暴雨积水深度072123.bmp"
+                     style="display: block; height: 620px;width: 925px; margin: 0 auto;" />
+               </div>
+
+            </div>
+         </div>
+         <script type="text/javascript">
+            $(function () {
+               $('.js-timeline').Timeline({
+                  // 设置时间轴的自动播放和播放速度(毫秒)
+                  autoplay: true,
+                  autoplaySpeed: 2000
+               });
+            });
+         </script>
+      </div>
+   </div>
+
+   <div id="POISubmergedRatioID" style="width: 1468px; margin-left: 50px; position: relative; display: none;">
+      <div id="submergingOfMedicalMapID" style="width: 1460px; height: 700px; margin-top: 20px;"></div>
+      <div id="submergingOfTrafficMapID" style="width: 1460px; height: 700px; margin-top: 20px;"></div>
+      <div id="submergingOfEducationMapID" style="width: 1460px; height: 700px; margin-top: 20px;"></div>
+      <div id="submergingOfAmusementMapID" style="width: 1460px; height: 700px; margin-top: 20px;"></div>
+   </div>
+
+   <div id="disasterDamageAnalysisID" style="width: 1468px; margin-left: 50px; position: relative; display: none;">
+      <div id="waterDepthZDYFYMapID" style="width: 1460px; height: 700px; margin-top: 20px;"></div>
+      <div id="damageExtentMapID" style="width: 1460px; height: 700px; margin-top: 20px;"></div>
+   </div>
+
+   <div id="DEMDataDourceID" style="width: 1468px; margin-left: 50px; position: relative; display: none;">
+      <iframe src="https://search.asf.alaska.edu/#/" width="1460" height="692"></iframe>
+   </div>
+
+   <div id="landcoverDataDourceID" style="width: 1468px; margin-left: 50px; position: relative; display: none;">
+      <iframe
+         src="https://viewer.esa-worldcover.org/worldcover/?language=en&bbox=-270,-78.06198918665974,270,78.06198918665976&overlay=false&bgLayer=MapBox_Satellite&date=2022-05-02&layer=WORLDCOVER_2020_MAP"
+         width="1460" height="692">
+      </iframe>
+   </div>
+
+   <div id="GitHubLinkID" style="width: 1468px; margin-left: 50px; position: relative; display: none;">
+      <iframe src="https://search.asf.alaska.edu/#/" width="1460" height="692"></iframe>
+   </div>
+
+   <footer class="footerCreditInformation">
+      Coded by Huang Hongtian, &nbsp Wuhan University<br>
+      GitHub: github.com/WHUGIS2018 &nbsp &nbsp Email: huanght1999@qq.com
+   </footer>
+
+</body>
+<script type="text/javascript" src='../js/sidebarBtnClick.js'></script>
+<script type="text/javascript" src="../js/realtimeWeatherMap.js"></script>
+<script type="text/javascript" src="../js/submergingOfMedicalMap.js"></script>
+<script type="text/javascript" src="../js/submergingOfTrafficMap.js"></script>
+<script type="text/javascript" src="../js/submergingOfEducationMap.js"></script>
+<script type="text/javascript" src="../js/submergingOfAmusementMap.js"></script>
+<script type="text/javascript" src="../js/waterDepthZDYFYMap.js"></script>
+<script type="text/javascript" src="../js/damageExtentMap.js"></script>
+
+</html>

@@ -46,6 +46,7 @@ function run_submergingOfTraffic(_rawData_submergingOfTraffic) {
             type: 'line',
             datasetId: datasetId,
             showSymbol: false,
+            smooth: true,
             name: degree,
             endLabel: {
                 show: true,

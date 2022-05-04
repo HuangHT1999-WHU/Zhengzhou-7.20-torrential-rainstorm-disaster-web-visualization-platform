@@ -81,4 +81,7 @@ $("#btnGoToGitHubLink").click(function () {
   $("#DEMDataDourceID").hide()
   $("#landcoverDataDourceID").hide()
   $("#GitHubLinkID").show()
+
+  window.open('https://github.com/HuangHT1999-WHU/Zhengzhou-7.20-torrential-rainstorm-disaster-web-visualization-platform')
+
 })

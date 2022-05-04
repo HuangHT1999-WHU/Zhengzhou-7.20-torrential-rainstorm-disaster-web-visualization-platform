@@ -47,6 +47,7 @@ function run_submergingOfMedical(_rawData_submergingOfMedical) {
             datasetId: datasetId,
             showSymbol: false,
             name: degree,
+            smooth: true,
             endLabel: {
                 show: true,
                 formatter: function (params) {

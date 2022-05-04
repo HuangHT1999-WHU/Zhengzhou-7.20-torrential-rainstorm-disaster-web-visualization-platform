@@ -47,6 +47,7 @@ function run_submergingOfEducation(_rawData_submergingOfEducation) {
             datasetId: datasetId,
             showSymbol: false,
             name: degree,
+            smooth: true,
             endLabel: {
                 show: true,
                 formatter: function (params) {

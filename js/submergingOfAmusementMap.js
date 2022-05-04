@@ -47,6 +47,7 @@ function run_submergingOfAmusement(_rawData_submergingOfAmusement) {
             datasetId: datasetId,
             showSymbol: false,
             name: degree,
+            smooth: true,
             endLabel: {
                 show: true,
                 formatter: function (params) {

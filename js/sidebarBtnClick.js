@@ -5,6 +5,19 @@ $('a').click(function (e) {
 //跳转至实时天气地图
 $("#btnGoToRealtimeWeatherMap").click(function () {
   $("#realtimeWeatherMapID").show()
+  $("#waterDepthDynamicPresentationID").hide()
+  $("#waterDepthTimelineID").hide()
+  $("#POISubmergedRatioID").hide()
+  $("#disasterDamageAnalysisID").hide()
+  $("#DEMDataDourceID").hide()
+  $("#landcoverDataDourceID").hide()
+  $("#GitHubLinkID").hide()
+})
+
+//跳转至积水深度动态展示
+$("#btnGoToWaterDepthDynamicPresentation").click(function () {
+  $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").show()
   $("#waterDepthTimelineID").hide()
   $("#POISubmergedRatioID").hide()
   $("#disasterDamageAnalysisID").hide()
@@ -16,6 +29,7 @@ $("#btnGoToRealtimeWeatherMap").click(function () {
 //跳转至积水深度时序轮播
 $("#btnGoToWaterDepthTimeline").click(function () {
   $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").hide()
   $("#waterDepthTimelineID").show()
   $("#POISubmergedRatioID").hide()
   $("#disasterDamageAnalysisID").hide()
@@ -27,6 +41,7 @@ $("#btnGoToWaterDepthTimeline").click(function () {
 //跳转至POI受淹比例
 $("#btnGoToPOISubmergedRatio").click(function () {
   $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").hide()
   $("#waterDepthTimelineID").hide()
   $("#POISubmergedRatioID").show()
   $("#disasterDamageAnalysisID").hide()
@@ -38,6 +53,7 @@ $("#btnGoToPOISubmergedRatio").click(function () {
 //跳转至受灾程度分析
 $("#btnGoToDisasterDamageAnalysis").click(function () {
   $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").hide()
   $("#waterDepthTimelineID").hide()
   $("#POISubmergedRatioID").hide()
   $("#disasterDamageAnalysisID").show()
@@ -49,6 +65,7 @@ $("#btnGoToDisasterDamageAnalysis").click(function () {
 //跳转至DEM数据源
 $("#btnGoToDEMDataDource").click(function () {
   $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").hide()
   $("#waterDepthTimelineID").hide()
   $("#POISubmergedRatioID").hide()
   $("#disasterDamageAnalysisID").hide()
@@ -62,6 +79,7 @@ $("#btnGoToDEMDataDource").click(function () {
 //跳转至土地利用数据源
 $("#btnGoToLandcoverDataDource").click(function () {
   $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").hide()
   $("#waterDepthTimelineID").hide()
   $("#POISubmergedRatioID").hide()
   $("#disasterDamageAnalysisID").hide()
@@ -75,6 +93,7 @@ $("#btnGoToLandcoverDataDource").click(function () {
 //跳转至GitHub开源链接
 $("#btnGoToGitHubLink").click(function () {
   $("#realtimeWeatherMapID").hide()
+  $("#waterDepthDynamicPresentationID").hide()
   $("#waterDepthTimelineID").hide()
   $("#POISubmergedRatioID").hide()
   $("#disasterDamageAnalysisID").hide()

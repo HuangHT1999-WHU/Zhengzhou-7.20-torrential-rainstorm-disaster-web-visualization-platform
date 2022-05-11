@@ -46,6 +46,7 @@
       <ul>
          <li class="menuTitle">导航窗口</li>
          <li><a id="btnGoToRealtimeWeatherMap">实时天气地图</a></li>
+         <li><a id="btnGoToWaterDepthDynamicPresentation">积水深度动态展示</a></li>
          <li><a id="btnGoToWaterDepthTimeline">积水深度时序轮播</a></li>
          <li><a id="btnGoToPOISubmergedRatio">POI受淹比例</a></li>
          <li><a id="btnGoToDisasterDamageAnalysis">受灾程度分析</a></li>
@@ -83,6 +84,12 @@
       <h3 style="color: '#456268';text-align: center;font-weight:bold; margin-top: 20px;">中国实时风速分布图</h3>
       <div id="windSpeedMapID" style="width: 1460px; height: 700px;"></div>
 
+   </div>
+
+   <div id="waterDepthDynamicPresentationID" style="width: 1468px; margin-left: 50px; position: relative; display: none;">
+      <video width="1460" height="700" controls="controls" autoplay="autoplay">
+         <source src="../image/子流域积水深度动态展示.mp4" type="video/mp4" />
+      </video>
    </div>
 
    <div id="waterDepthTimelineID"
